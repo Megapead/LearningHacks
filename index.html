@@ -25,55 +25,94 @@
 	<section id="banner">
 		<article class="container box style3">
 			<form method="post" action="#">
-				<div class="row gtr-50">
-					<div class="col-6 col-12-mobile"><input type="text" class="text" name="name" placeholder="From username" /></div>
-					<div class="col-6 col-12-mobile"><input type="text" class="text" name="pass" placeholder="From password" /></div>
-					<div class="col-12">
-						<ul class="actions">
-							<button input id="spotify" type="button"><u class="icon fab fa-spotify" style="font-size:20px;color:white;"> Spotify</u></button>
-							<button input id="google" type="button"><u class="icon fab fa-google" style="font-size:20px;color:white;"> Google</u></button>
-							<button input id="apple" type="button"><u class="icon fab fa-apple	" style="font-size:20px;color:white;"> Apple</u></button>
-						</ul>
-					</div>
+				<h1 style="color:black">From</h1>
+
+				<!-- From Login -->
+				<form name="login">
 					<div class="row gtr-50">
-						<div class="col-6 col-12-mobile"><input type="text" class="text" name="name" placeholder="To username" /></div>
-						<div class="col-6 col-12-mobile"><input type="text" class="text" name="pass" placeholder="To password" /></div>
-						<div class="col-12">
-							<ul class="actions">
-								<button input id="spotify" type="button"><u class="icon fab fa-spotify" style="font-size:20px;color:white;"> Spotify</u></button>
-								<button input id="google" type="button"><u class="icon fab fa-google" style="font-size:20px;color:white;"> Google</u></button>
-								<button input id="apple" type="button"><u class="icon fab fa-apple	" style="font-size:20px;color:white;"> Apple</u></button>
-							</ul>
+						<div class="col-6 col-12-mobile"><input type="text" class="text" name="name1" placeholder="Username" /></div>
+						<div class="col-6 col-12-mobile"><input type="text" class="Password" name="pass1" placeholder="Password" /></div>
+						<div>
+							<input type="radio" id = "spotify" name>
+							<label for="spotify">Spotify</label>
+							<input type="radio" id = "spotify">
+							<label for="spotify">Google</label>
+							<input type="radio" id = "spotify">
+							<label for="spotify">Apple</label>
+						</div>
+						<div class="col-6 col-12-mobile"><input id = "userNameT" type="text" class="text" name="name" placeholder="Username" /></div>
+						<div class="col-6 col-12-mobile"><input id = "passT" type="text" class="text" name="pass" placeholder="Password" /></div>
+						<div>
+							<input type="radio" id = "spotify" name>
+							<label for="spotify">Spotify</label>
+							<input type="radio" id = "spotify">
+							<label for="spotify">Google</label>
+							<input type="radio" id = "spotify">
+							<label for="spotify">Apple</label>
 						</div>
 					</div>
+
 				</form>
-			</article>
-		</section>
-		<section id="footer">
-			<ul class="icons">
-				<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-				<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
-				<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
-				<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
-				<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
-				<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+
+
+
+
+
+
+
+
+
+
+
+				<!-- <div class="col-12">
+					<ul class="actions">
+						<button input id="fromSpotify" type="button"><u class="icon fab fa-spotify" style="font-size:20px;color:white;"> Spotify</u></button>
+						<button input id="fromGoogle" type="button"><u class="icon fab fa-google" style="font-size:20px;color:white;"> Google</u></button>
+						<button input id="fromApple" type="button"><u class="icon fab fa-apple	" style="font-size:20px;color:white;"> Apple</u></button>
+						<h1 style="color:black">To</h1>
+					</ul>
+				</div> -->
+
+				<!-- <div class="row gtr-50">
+
+					<div class="col-12">
+						<ul class="actions">
+							<button input id="toSpotify" type="button"><u class="icon fab fa-spotify" style="font-size:20px;color:white;"> Spotify</u></button>
+							<button input id="toGoogle" type="button"><u class="icon fab fa-google" style="font-size:20px;color:white;"> Google</u></button>
+							<button input id="toApple" type="button"><u class="icon fab fa-apple	" style="font-size:20px;color:white;"> Apple</u></button>
+						</ul>
+					</div>
+				</div> -->
+			</form>
+		</article>
+	</section>
+
+	<!-- Footer -->
+	<section id="footer">
+		<ul class="icons">
+			<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+			<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+			<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+			<li><a href="#" class="icon fa-pinterest"><span class="label">Pinterest</span></a></li>
+			<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+			<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+		</ul>
+		<div class="copyright">
+			<ul class="menu">
+				<li>&copy;All rights reserved</li><li>Design: <a href="https://github.com/Megapead/LearningHacks">Project's Github</a></li>
 			</ul>
-			<div class="copyright">
-				<ul class="menu">
-					<li>&copy;All rights reserved</li><li>Design: <a href="https://github.com/Megapead/LearningHacks">Project's Github</a></li>
-				</ul>
-			</div>
-		</section>
+		</div>
+	</section>
 
-		<!-- Scripts -->
-		<script src="assets/js/jquery.min.js"></script>
-		<script src="assets/js/jquery.scrolly.min.js"></script>
-		<script src="assets/js/jquery.poptrox.min.js"></script>
-		<script src="assets/js/browser.min.js"></script>
-		<script src="assets/js/breakpoints.min.js"></script>
-		<script src="assets/js/util.js"></script>
-		<script src="assets/js/main.js"></script>
-		<script src="submit.js"></script>
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/jquery.poptrox.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="submit.js"></script>
 
-	</body>
-	</html>
+</body>
+</html>

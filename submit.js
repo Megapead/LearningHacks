@@ -1,9 +1,33 @@
-document.getElementById("spotify").addEventListener("click", function(){
-  alert("spotify");
+
+
+
+function checkEmpty(form){
+    if(form.name1.value == "a" && form.pass1.value == "b"){
+        alert("ItWorks");
+    }else
+    {
+        alert("Thats wrong fam");
+    }
+}
+
+// To
+document.getElementById("fromSpotify").addEventListener("click", function(){
+    checkEmpty();
 });
-document.getElementById("apple").addEventListener("click", function(){
-  alert("apple");
+document.getElementById("fromApple").addEventListener("click", function(){
+  alert("From apple");
 });
-document.getElementById("google").addEventListener("click", function(){
-  alert("google");
+document.getElementById("fromGoogle").addEventListener("click", function(){
+  alert("From google");
+});
+
+// From
+document.getElementById("toSpotify").addEventListener("click", function(){
+  alert("To spotify");
+});
+document.getElementById("toApple").addEventListener("click", function(){
+  alert("To apple");
+});
+document.getElementById("toGoogle").addEventListener("click", function(){
+  alert("To google");
 });
