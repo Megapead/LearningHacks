@@ -1,9 +1,11 @@
-document.getElementById("spotify").addEventListener("click", function(){
-  alert("spotify");
-});
-document.getElementById("apple").addEventListener("click", function(){
-  alert("apple");
-});
-document.getElementById("google").addEventListener("click", function(){
-  alert("google");
-});
+
+
+
+function checkEmpty(form){
+    if(form.name1.value == "a" && form.pass1.value == "b"){
+        alert("ItWorks");
+    }else
+    {
+        alert("Thats wrong fam");
+    }
+}
