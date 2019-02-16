@@ -153,7 +153,7 @@ def main():
 			json.dump(playlists, f)
 
 		# Tab-separated file.
-		elif args.format == 'csv':
+		elif args.format == 'txt':
 			for playlist in playlists:
 				f.write(playlist['name'] + '\r\n')
 				for track in playlist['tracks']:
