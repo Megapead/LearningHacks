@@ -16,7 +16,7 @@
 			<h1>Convert Playlists</h1>
 			<p><u class="icon fab fa-spotify" style="font-size:20px;color:white;"> Spotify</u>
 			<u class="icon fab fa-google" style="font-size:20px;color:white;"> Google</u>
-			<u class="icon fab fa-apple	" style="font-size:20px;color:white;"> Apple</u></p>
+			<u class="icon fab fa-apple" style="font-size:20px;color:white;"> Apple</u></p>
 		</header>
 		<footer>
 			<a href="#banner" class="button style2 scrolly-middle">Convert Now!</a>
@@ -27,14 +27,16 @@
 		<article class="container box style3">
 			<form method="post" action="#">
 				<h1 style="color:black">From</h1>
-				<div class="row gtr-50">
+				<div class="a">
 					<div class="col-6 col-12-mobile"><input type="text" class="text" name="name" placeholder="Username" /></div>
 					<div class="col-6 col-12-mobile"><input type="text" class="text" name="pass" placeholder="Password" /></div>
 					<div class="col-12">
 						<ul class="actions">
+							<br>
 							<input type="radio" name="platform_from" value="Spotify" checked> <u class="icon fab fa-spotify" style="font-size:20px;color:black;"> Spotify</u>
 							<input type="radio" name="platform_from" value="Google"><u class="icon fab fa-google" style="font-size:20px;color:black;"> Google</u>
 							<input type="radio" name="platform_from" value="Apple"><u class="icon fab fa-apple	" style="font-size:20px;color:black;"> Apple</u> <br>
+							<br>
 							<h1 style="color:black">To</h1>
 						</ul>
 					</div>
@@ -42,12 +44,16 @@
 					<div class="col-6 col-12-mobile"><input type="text" class="text" name="pass" placeholder="Password" /></div>
 					<div class="col-12">
 						<ul class="actions">
+							<br>
 							<input type="radio" name="platform_from" value="Spotify" checked> <u class="icon fab fa-spotify" style="font-size:20px;color:black;"> Spotify</u>
 							<input type="radio" name="platform_from" value="Google"><u class="icon fab fa-google" style="font-size:20px;color:black;"> Google</u>
 							<input type="radio" name="platform_from" value="Apple"><u class="icon fab fa-apple	" style="font-size:20px;color:black;"> Apple</u> <br>
 						</ul>
 					</div>
-					<button input id="submit" type="button"><u style="font-size:20px;color:white;"> Submit</u></button>
+					<center>
+						<br>
+					<button type="button" onclick="alert('Submitted!')" style="font-size:20px;">Submit</button>
+				</center>
 				</div>
 			</div>
 		</form>
