@@ -30,57 +30,64 @@ def allowed_file(filename):
 	return '.' in filename and \
 	filename.rsplit('.', 1)[1].lower() in ALLOWED_EXT
 
-	@app.route('/',methods=['GET','POST'])
-	def index():
-		if request.method == 'POST':
-			print("Here!",file=sys.stderr)
-			if 'file' not in request.files:
-				return redirect(request.url)
-				file = request.files['file']
-				rating = compareFaces(file)
-				print(rating,file=sys.stderr)
-				return redirect(url_for('result')+'?res='+rating)
-				return render_template("index.html") #renders the index.html template
-				#return 'Goes somewhere'
+
+@app.route('/',methods=['GET','POST'])
+def index():
+	if request.method == 'POST':
+		print("Here!",file=sys.stderr)
+		if 'file' not in request.files:
+			return redirect(request.url)
+		file = request.files['file']
+		rating = compareFaces(file)
+		print(rating,file=sys.stderr)
+		return redirect(url_for('result')+'?res='+rating)
+	return render_template("index.html") #renders the index.html template
+	#return 'Goes somewhere'
 
 
 
-				@app.route('/howmuchikedannydevitoareyou', methods=['GET'])
-				def result():
-					if request.args is not None:
-						results = request.args.get('res')
-						return render_template("results.html", results = results)
-						return "Bad routing"
+@app.route('/howmuchikedannydevitoareyou', methods=['GET'])
+def result():
+	if request.args is not None:
+		results = request.args.get('res')
+		return render_template("results.html", results = results)
+	return "Bad routing"
 
 
 
 
 
-						def stripPostData(base64):
-							return str(base64)[str(base64).find(','):] #Removes added post data before comma of base64 image encoding
+def stripPostData(base64):
+	return str(base64)[str(base64).find(','):] #Removes added post data before comma of base64 image encoding
 
 
-							def saveFile(file):
-								try:
-									os.makedirs('static/faces') #tries to make the listed directories
-								except:
-									pass
-									path = os.path.abspath('static/faces')#Gets absoulute path of service
-									#file = open(path+'/you.jpg','wb')
-									print(file,file=sys.stderr)
-									#img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
-									file.save(os.path.join(app.config['UPLOAD_FOLDER'],'/you.jpg'))
+def saveFile(file):
+	try:
+		os.makedirs('static/faces') #tries to make the listed directories
+	except:
+		pass
+	path = os.path.abspath('static/faces')#Gets absoulute path of service
+	#file = open(path+'/you.jpg','wb')
+	print(file,file=sys.stderr)
+	#img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
+	file.save(os.path.join(app.config['UPLOAD_FOLDER'],'you.jpg'))
 
-									def compareFaces(you):
-										saveFile(you)
-										#saveFile(them)
-										pretty_image = face_recognition.load_image_file('/static/faces/you.jpg')
-										them_image = face_recognition.load_image_file('/static/faces/them.jpg')
-										you_encoding = face_recognition.face_encodings(pretty_image)[0]
-										them_encoding = face_recognition.face_encodings(them_image)[0]
-										return face_recognition.face_distance(you_encoding,them_encoding)
+def compareFaces(you):
+	#saveFile(you)
+	#saveFile(them)
+	try:
+		os.makedirs('static/faces')
+	except:
+		pass
+	path = os.path.abspath('static/faces')
+	you.save(os.path.join(path,'you.jpg'))
+	pretty_image = face_recognition.load_image_file('static/faces/you.jpg')
+	them_image = face_recognition.load_image_file('static/faces/them.jpg')
+	you_encoding = face_recognition.face_encodings(pretty_image)[0]
+	them_encoding = face_recognition.face_encodings(them_image)[0]
+	return face_recognition.face_distance(you_encoding,them_encoding)
 
 
 
-										if __name__ == "__main":
-											app.run(host=='0.0.0.0',ssl_context='adhoc')
+if __name__ == "__main":
+	app.run(host=='0.0.0.0',ssl_context='adhoc')
