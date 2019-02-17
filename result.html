@@ -12,7 +12,20 @@
 <body class="is-preload">
 	<section id="banner">
 		<article class="container box style3">
-            <a href="index.html" class="button style2 scrolly-middle">Back</a>
+			<form method="post" action="#">
+				<h1 style="color:black">File Upload</h1>
+				<div class="a">
+					<div class="col-12">
+						<img src="{{ url_for('static', 'faces/you.jpg') }}" alt="Your Image" title="Your Image">
+						<img src="{{ url_for('static', 'faces/them.jpg') }}" alt="Their Image" title="Their Image">
+						<br><form id="uploadbanner" enctype="multipart/form-data" method="post">
+							<input id="fileupload" name="you" type="file" />
+							<input id="fileupload" name="them" type="file" /><br><br>
+							<input type="submit" value="Upload Images" name="submit">
+						</form>
+					</div>
+				</div>
+			</form>
 		</article>
 	</section>
 
