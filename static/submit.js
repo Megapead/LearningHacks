@@ -1,4 +1,3 @@
-
 function getUrlVars() {
     var vars = {};
     var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
@@ -16,7 +15,7 @@ let myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
         datasets: [{
-            data: [percentage,percentage2],
+            data: [percentage2,percentage],
             backgroundColor: colorHex
         }],
         labels: labels
