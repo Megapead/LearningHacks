@@ -47,24 +47,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
         <script src="/static/submit.js"></script>
-        <script>
-        const realFileBtn = document.getElementById("you");
-        const customBtn = document.getElementById("custom-button");
-        const customTxt = document.getElementById("custom-text");
-
-        customBtn.addEventListener("click", function() {
-            realFileBtn.click();
-        });
-        realFileBtn.addEventListener("change", function() {
-            if (realFileBtn.value) {
-                customTxt.innerHTML = realFileBtn.value.match(
-                    /[\/\\]([\w\d\s\.\-\(\)]+)$/
-                )[1];
-            } else {
-                customTxt.innerHTML = "No file chosen, yet.";
-            }
-        });
-
-        </script>
+        <script src="/static/buttonhandle.js"></script>
     </body>
     </html>
