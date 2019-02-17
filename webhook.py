@@ -33,9 +33,10 @@ def allowed_file(filename):
 @app.route('/',methods=['GET','POST'])
 def index():
 	if request.method is 'POST':
-		you = request.form['you']
-		them = request.form['them']
-		rating = compareFaces(you,them)
+		if 'you' not in request.files:
+			return redirect(request.url)
+		file = request.files['you']
+		rating = compareFaces(file)
 		return redirect(url_for('result')+'?res='+rating)
 	return render_template("index.html") #renders the index.html template
 	#return 'Goes somewhere'
@@ -57,21 +58,20 @@ def stripPostData(base64):
     return str(base64)[str(base64).find(','):] #Removes added post data before comma of base64 image encoding
 
 
-def saveFile(base64,filename):
+def saveFile(file):
     try:
         os.makedirs('static/faces') #tries to make the listed directories
     except:
         pass
     path = os.path.abspath('static/faces')#Gets absoulute path of service
-    file = open(path+'/'+filename+'.jpg','wb')
-    img = flask.request.files.get('you', '')
-    print(img,file=sys.stderr)
+    file = open(path+'/you.jpg','wb')
+    print(file,file=sys.stderr)
     #img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
-    file.write(img)
+    file.write(file)
 
 def compareFaces(you,them):
-    saveFile(you)
-    saveFile(them)
+    #saveFile(you)
+    #saveFile(them)
     try:
         pretty_image = face_recognition.load_image_file('static/faces/you.jpg')
         them_image = face_recognition.load_image_file('static/faces/them.jpg')
