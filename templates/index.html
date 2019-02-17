@@ -29,7 +29,7 @@
 					<div class="col-12">
 							<br><form id="uploadbanner" enctype="multipart/form-data" method="post">
 								<div class="upload-btn-wrapper">
-								  <button class="btn" onclick="upload()">Upload a file</button>
+								  <button class="btn">Upload a file</button>
 									<input id="fileupload" name="you" type="file" />
 								</div>
 								<br><br><input type="submit" value="Submit" name="submit">
@@ -56,20 +56,3 @@
 			<script src="/static/submit.js"></script>
 		</body>
 		</html>
-		<script>
-		function upload(request,response) {
-		console.log("Uploading...")
-		var image = document.getElementById('image').src;
-		/*
-		var form = document.getElementById('myForm');
-		var formData = new FormData();
-		formData.append("file", image);
-		var xmlhttp = new XMLHttpRequest();
-		console.log("{{ location }}")
-		xmlhttp.open("POST", "{{ location }}");
-		xmlhttp.setRequestHeader("Access-Control-Allow-Origin", "*");
-		xmlhttp.send(formData);
-		console.log("File Sent");*/
-		return image
-		}
-		</script>
