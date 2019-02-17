@@ -1,3 +1,22 @@
+<<<<<<< HEAD
+import spotipy
+from spotipy.oauth2 import SpotifyClientCredentials
+
+id = input("User name: ")
+psswd = input("Password: ")
+client_credentials_manager = SpotifyClientCredentials(client_id=id, client_secret=psswd)
+sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
+
+playlists = sp.user_playlists('Username')
+
+while playlists:
+    for i, playlist in enumerate(playlists['items']):
+        print("%4d %s %s" % (i + 1 + playlists['offset'], playlist['uri'],  playlist['name']))
+    if playlists['next']:
+        playlists = sp.next(playlists)
+    else:
+        playlists = None
+=======
 #!/usr/bin/env python3
 
 import argparse
@@ -167,3 +186,4 @@ def main():
 
 if __name__ == '__main__':
 	main()
+>>>>>>> 64cd4d35191a4a55895027593150954af004d81a
