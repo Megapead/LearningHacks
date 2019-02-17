@@ -31,11 +31,11 @@ def allowed_file(filename):
 
 @app.route('/',methods=['GET','POST'])
 def index():
-	if request.method is 'POST'
-        you = request.form['you']
-        them = request.form['them']
+	if request.method is 'POST':
+		you = request.form['you']
+		them = request.form['them']
 		rating = compareFaces(you,them)
-        return redirect(url_for('result')+'?res='+rating)
+		return redirect(url_for('result')+'?res='+rating)
 	return render_template("index.html") #renders the index.html template
 
 
