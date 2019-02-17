@@ -11,7 +11,7 @@ import urllib3
 
 app = Flask(__name__, template_folder='templates') #Initializes the app with templates as the HTML folder
 
-
+app.config['UPLOAD_FOLDER'] = '/static/faces'
 app.config['SECRET_KEY'] = "deve" #Encryption key
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 #This is essential for allowing the images to be refreshed in the management page, it sets the expirery for the browser cache to 0
 
@@ -32,10 +32,11 @@ def allowed_file(filename):
 
 @app.route('/',methods=['GET','POST'])
 def index():
-	if request.method is 'POST':
-		if 'you' not in request.files:
+	if request.method == 'POST':
+		print("Here!",file=sys.stderr)
+		if 'file' not in request.files:
 			return redirect(request.url)
-		file = request.files['you']
+		file = request.files['file']
 		rating = compareFaces(file)
 		return redirect(url_for('result')+'?res='+rating)
 	return render_template("index.html") #renders the index.html template
@@ -67,10 +68,10 @@ def saveFile(file):
     file = open(path+'/you.jpg','wb')
     print(file,file=sys.stderr)
     #img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
-    file.write(file)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'],'you.jpg'))
 
-def compareFaces(you,them):
-    #saveFile(you)
+def compareFaces(you):
+    saveFile(you)
     #saveFile(them)
     try:
         pretty_image = face_recognition.load_image_file('static/faces/you.jpg')
