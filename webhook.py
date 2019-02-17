@@ -1,189 +1,76 @@
-<<<<<<< HEAD
-import spotipy
-from spotipy.oauth2 import SpotifyClientCredentials
+from flask import Flask, redirect, request, url_for, session, flash, render_template, make_response
+import face_recognition
 
-id = input("User name: ")
-psswd = input("Password: ")
-client_credentials_manager = SpotifyClientCredentials(client_id=id, client_secret=psswd)
-sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
-
-playlists = sp.user_playlists('Username')
-
-while playlists:
-    for i, playlist in enumerate(playlists['items']):
-        print("%4d %s %s" % (i + 1 + playlists['offset'], playlist['uri'],  playlist['name']))
-    if playlists['next']:
-        playlists = sp.next(playlists)
-    else:
-        playlists = None
-=======
-#!/usr/bin/env python3
-
-import argparse
-import codecs
-import http.client
-import http.server
-import json
-import re
+import os
+from os import listdir
+from os.path import isfile, join
 import sys
-import time
-import urllib.error
-import urllib.parse
-import urllib.request
-import webbrowser
+from werkzeug.utils import secure_filename
+import urllib3
 
-class SpotifyAPI:
 
-	# Requires an OAuth token.
-	def __init__(self, auth):
-		self._auth = auth
+app = Flask(__name__, template_folder='templates') #Initializes the app with templates as the HTML folder
 
-	# Gets a resource from the Spotify API and returns the object.
-	def get(self, url, params={}, tries=3):
-		# Construct the correct URL.
-		if not url.startswith('https://api.spotify.com/v1/'):
-			url = 'https://api.spotify.com/v1/' + url
-		if params:
-			url += ('&' if '?' in url else '?') + urllib.parse.urlencode(params)
 
-		# Try the sending off the request a specified number of times before giving up.
-		for _ in range(tries):
-			try:
-				req = urllib.request.Request(url)
-				req.add_header('Authorization', 'Bearer ' + self._auth)
-				res = urllib.request.urlopen(req)
-				reader = codecs.getreader('utf-8')
-				return json.load(reader(res))
-			except Exception as err:
-				log('Couldn\'t load URL: {} ({})'.format(url, err))
-				time.sleep(2)
-				log('Trying again...')
-		sys.exit(1)
+app.config['SECRET_KEY'] = "deve" #Encryption key
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 #This is essential for allowing the images to be refreshed in the management page, it sets the expirery for the browser cache to 0
 
-	# The Spotify API breaks long lists into multiple pages. This method automatically
-	# fetches all pages and joins them, returning in a single list of objects.
-	def list(self, url, params={}):
-		response = self.get(url, params)
-		items = response['items']
-		while response['next']:
-			response = self.get(response['next'])
-			items += response['items']
-		return items
 
-	# Pops open a browser window for a user to log in and authorize API access.
-	@staticmethod
-	def authorize(client_id, scope):
-		webbrowser.open('https://accounts.spotify.com/authorize?' + urllib.parse.urlencode({
-			'response_type': 'token',
-			'client_id': client_id,
-			'scope': scope,
-			'redirect_uri': 'http://127.0.0.1:{}/redirect'.format(SpotifyAPI._SERVER_PORT)
-		}))
+ALLOWED_EXT = ['jpg', 'jpeg', 'png'] #List of filetypes allowed to be served to the server
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Disables a very annoying warning when starting flask
 
-		# Start a simple, local HTTP server to listen for the authorization token... (i.e. a hack).
-		server = SpotifyAPI._AuthorizationServer('127.0.0.1', SpotifyAPI._SERVER_PORT)
-		try:
-			while True:
-				server.handle_request()
-		except SpotifyAPI._Authorization as auth:
-			return SpotifyAPI(auth.access_token)
 
-	# The port that the local server listens on. Don't change this,
-	# as Spotify only will redirect to certain predefined URLs.
-	_SERVER_PORT = 43019
 
-	class _AuthorizationServer(http.server.HTTPServer):
-		def __init__(self, host, port):
-			http.server.HTTPServer.__init__(self, (host, port), SpotifyAPI._AuthorizationHandler)
+'''
+allowed_file()
+returns a boolean if the file extension of the filename provided is in the ALLOWED_EXT list
+'''
+def allowed_file(filename):
+	return '.' in filename and \
+		filename.rsplit('.', 1)[1].lower() in ALLOWED_EXT
 
-		# Disable the default error handling.
-		def handle_error(self, request, client_address):
-			raise
+@app.route('/',methods=['GET','POST'])
+def index():
+	if request.method is 'POST'
+        you = request.form['you']
+        them = request.form['them']
+		rating = compareFaces(you,them)
+        return redirect(url_for('result')+'?res='+rating)
+	return render_template("index.html") #renders the index.html template
 
-	class _AuthorizationHandler(http.server.BaseHTTPRequestHandler):
-		def do_GET(self):
-			# The Spotify API has redirected here, but access_token is hidden in the URL fragment.
-			# Read it using JavaScript and send it to /token as an actual query string...
-			if self.path.startswith('/redirect'):
-				self.send_response(200)
-				self.send_header('Content-Type', 'text/html')
-				self.end_headers()
-				self.wfile.write(b'<script>location.replace("token?" + location.hash.slice(1));</script>')
 
-			# Read access_token and use an exception to kill the server listening...
-			elif self.path.startswith('/token?'):
-				self.send_response(200)
-				self.send_header('Content-Type', 'text/html')
-				self.end_headers()
-				self.wfile.write(b'<script>close()</script>Thanks! You may now close this window.')
-				raise SpotifyAPI._Authorization(re.search('access_token=([^&]*)', self.path).group(1))
 
-			else:
-				self.send_error(404)
+@app.route('/howmuchikedannydevitoareyou', methods=['GET'])
+def result():
+    if request.args not None:
+        results = request.args.get('res')
+        return render_template("results.html")
+    return "Bad routing"
 
-		# Disable the default logging.
-		def log_message(self, format, *args):
-			pass
 
-	class _Authorization(Exception):
-		def __init__(self, access_token):
-			self.access_token = access_token
 
-def log(str):
-	#print('[{}] {}'.format(time.strftime('%I:%M:%S'), str).encode(sys.stdout.encoding, errors='replace'))
-	sys.stdout.buffer.write('[{}] {}\n'.format(time.strftime('%I:%M:%S'), str).encode(sys.stdout.encoding, errors='replace'))
-	sys.stdout.flush()
 
-def main():
-	# Parse arguments.
-	parser = argparse.ArgumentParser(description='Exports your Spotify playlists. By default, opens a browser window '
-	                                           + 'to authorize the Spotify Web API, but you can also manually specify'
-	                                           + ' an OAuth token with the --token option.')
-	parser.add_argument('--token', metavar='OAUTH_TOKEN', help='use a Spotify OAuth token (requires the '
-	                                           + '`playlist-read-private` permission)')
-	parser.add_argument('--format', default='txt', choices=['json', 'txt'], help='output format (default: txt)')
-	parser.add_argument('file', help='output filename', nargs='?')
-	args = parser.parse_args()
 
-	# If they didn't give a filename, then just prompt them. (They probably just double-clicked.)
-	while not args.file:
-		args.file = input('Enter a file name (e.g. playlists.txt): ')
+def stripPostData(base64):
+    return str(base64)[str(base64).find(','):] #Removes added post data before comma of base64 image encoding
 
-	# Log into the Spotify API.
-	if args.token:
-		spotify = SpotifyAPI(args.token)
-	else:
-		spotify = SpotifyAPI.authorize(client_id='5c098bcc800e45d49e476265bc9b6934', scope='playlist-read-private')
 
-	# Get the ID of the logged in user.
-	me = spotify.get('me')
-	log('Logged in as {display_name} ({id})'.format(**me))
+def saveFile(base64,filename):
+    try:
+        os.makedirs('static/faces') #tries to make the listed directories
+    path = os.path.abspath('static/faces')#Gets absoulute path of service
+    file = open(path+'/'+filename+'.jpg','wb')
+    img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
+    file.write(img)
 
-	# List all playlists and all track in each playlist.
-	playlists = spotify.list('users/{user_id}/playlists'.format(user_id=me['id']), {'limit': 50})
-	for playlist in playlists:
-		log('Loading playlist: {name} ({tracks[total]} songs)'.format(**playlist))
-		playlist['tracks'] = spotify.list(playlist['tracks']['href'], {'limit': 100})
-
-	# Write the file.
-	with open(args.file, 'w', encoding='utf-8') as f:
-		# JSON file.
-		if args.format == 'json':
-			json.dump(playlists, f)
-
-		# Tab-separated file.
-		elif args.format == 'txt':
-			for playlist in playlists:
-				f.write(playlist['name'] + '\r\n')
-				for track in playlist['tracks']:
-					f.write('{name}\t{artists}\t{album}\r\n'.format(
-						name=track['track']['name'],
-						artists=', '.join([artist['name'] for artist in track['track']['artists']]),
-						album=track['track']['album']['name']
-					))
-				f.write('\r\n')
-	log('Wrote file: ' + args.file)
-
-if __name__ == '__main__':
-	main()
->>>>>>> 64cd4d35191a4a55895027593150954af004d81a
+def compareFaces(you,them):
+    saveFile(you)
+    saveFile(them)
+    try:
+        pretty_image = face_recognition.load_image_file('static/faces/you.jpg')
+        them_image = face_recognition.load_image_file('static/faces/them.jpg')
+        you_encoding = face_recognition.face_encodings(pretty_image)[0]
+        them_encoding = face_recognition.face_encodings(them_image)[0]
+        return face_recognition.face_distance(you_encoding,them_encoding)
+    except:
+        return -1
