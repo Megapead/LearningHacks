@@ -17,10 +17,13 @@ realFileBtn.addEventListener("change", function() {
   }
 });
 
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 26af201fd6beb247056e5f6c16905e276b3937f2
 
 
 // percentage wheel
