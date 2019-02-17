@@ -22,38 +22,38 @@
 //     options: options
 // });
 let ctx = document.getElementById('doughnutChart').getContext('2d');
-let labels = ['Pizza 🍕', 'Taco 🌮', 'Hot Dog 🌭', 'Sushi 🍣'];
-let colorHex = ['#FB3640', '#EFCA08', '#43AA8B', '#253D5B'];
+let labels = ['', 'Hot Dog 🌭'];
+let colorHex = ['#e6e6e6','#43AA8B'];
 
 let myChart = new Chart(ctx, {
   type: 'doughnut',
   data: {
     datasets: [{
-      data: [30, 10, 40, 20],
+      data: [40,60],
       backgroundColor: colorHex
     }],
     labels: labels
   },
   options: {
-    responsive: true,
+    responsive: false,
     legend: {
       position: 'bottom'
     },
     plugins: {
       datalabels: {
-        color: '#fff',
+        color: 'white',
         anchor: 'end',
-        align: 'start',
+        align: 'right',
         offset: -10,
         borderWidth: 2,
         borderColor: '#fff',
-        borderRadius: 25,
+        borderRadius: 10,
         backgroundColor: (context) => {
           return context.dataset.backgroundColor;
         },
         font: {
           weight: 'bold',
-          size: '10'
+          size: '5'
         },
         formatter: (value) => {
           return value + ' %';
