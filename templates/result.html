@@ -16,18 +16,21 @@
             <font size="+3"><h1>Results</h1></font><br>
         </header>
         <article class="container box style3">
-            <div class="a">
-                <div class="col-12">
-                    <img src="/static/faces/you.jpg" alt="Your Image" title="Your Image" style="width:250px;length:300px">
-                    <img src="/static/faces/them.jpg" alt="Their Image" title="Their Image" style="width:250px;length:300px">
-                    <style>h2{color: black;}</style>
-                    <header>
-                        <font size="2"><h2>Your Image &nbsp; Danny Devito</h2></font><br>
-                    </header>
+            <form method="post" action="#">
+                <div class="a">
+                    <div class="col-12">
+                        <img src="/static/faces/you.jpg" alt="Your Image" title="Your Image" style="width:250px;length:300px">
+                        <img src="/static/faces/them.jpg" alt="Their Image" title="Their Image" style="width:250px;length:300px">
+                        <style>h2{color: black;}</style>
+                        <header>
+                            <font size="2"><h2>Your Image &nbsp; Danny Devito</h2></font><br>
+                        </header>
+                    </div>
                 </div>
-            </div>
+            </form>
             <center><canvas id="doughnutChart" width="400" height="400"></canvas></center>
-            <br><a href="index.html" class="button style3 scrolly-middle">Back</a>
+
+            <br><a href="/" class="button style3 scrolly-middle">Back</a>
         </article>
     </section>
 
@@ -47,6 +50,5 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
         <script src="/static/submit.js"></script>
-        <script src="/static/buttonhandle.js"></script>
     </body>
     </html>
