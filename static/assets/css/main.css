@@ -25,6 +25,20 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;}
 
+.upload-btn-wrapper {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.upload-btn-wrapper input[type=file] {
+  font-size: 3em;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+
 body {
 	line-height: 1;
 }
