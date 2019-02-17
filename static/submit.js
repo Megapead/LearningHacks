@@ -1,10 +1,27 @@
-const url = 'process.php';
-const form = document.querySelector('form');
+// const url = 'process.php';
+// const form = document.querySelector('form');
+const realFileBtn = document.getElementById("real-file");
+const customBtn = document.getElementById("custom-button");
+const customTxt = document.getElementById("custom-text");
+
+customBtn.addEventListener("click", function() {
+  realFileBtn.click();
+});
+
+realFileBtn.addEventListener("change", function() {
+  if (realFileBtn.value) {
+    customTxt.innerHTML = realFileBtn.value.match(
+      /[\/\\]([\w\d\s\.\-\(\)]+)$/
+    )[1];
+  } else {
+    customTxt.innerHTML = "No file chosen, yet.";
+  }
+});
 
 form.addEventListener('submit', e => {
     e.preventDefault();
 
-    const files = document.querySelector('file').files;
+    const files = document.querySelector('real-file').files;
     const formData = new FormData();
 
     for (let i = 0; i < files.length; i++) {

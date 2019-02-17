@@ -1,3 +1,4 @@
+<?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_FILES['files'])) {
         $errors = [];
@@ -31,3 +32,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($errors) print_r($errors);
     }
 }
+?>

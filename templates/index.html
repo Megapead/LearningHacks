@@ -24,18 +24,20 @@
 
 	<section id="banner">
 		<article class="container box style3">
-			<form method="POST" action="#">
+			<form method="POST" action="process.php" enctype="multipart/form-data">
 				<div class="a">
 					<div class="col-12">
-							<br><form id="uploadbanner" enctype="multipart/form-data" method="post">
-								<div class="upload-btn-wrapper">
-								  <button class="btn">Upload a file</button>
-									<input id="fileupload" name="you" type="file" />
-								</div>
-								<br><br><input type="submit" value="Submit" name="submit">
-							</form>
-						</div>
+						<br><form id="uploadbanner" enctype="multipart/form-data" method="post">
+							<div class="upload-btn-wrapper">
+								<input type="file" id="real-file" hidden="hidden" />
+								<button type="button" id="custom-button">CHOOSE A FILE</button>
+								<span id="custom-text" style="color: black">No file chosen, yet.</span>
+
+							</div>
+							<br><br><input type="submit" value="Submit" name="submit">
+						</form>
 					</div>
+				</div>
 			</article>
 		</section>
 
