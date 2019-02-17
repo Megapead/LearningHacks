@@ -1,5 +1,5 @@
-// const url = 'process.php';
-// const form = document.querySelector('form');
+const url = 'process.php';
+const form = document.querySelector('form');
 const realFileBtn = document.getElementById("real-file");
 const customBtn = document.getElementById("custom-button");
 const customTxt = document.getElementById("custom-text");
