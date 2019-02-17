@@ -1,7 +1,33 @@
+
+// Define processing URL and form element
+const url = 'process.php';
+const form = document.querySelector('form');
+// Listen for form submit
+form.addEventListener('submit', e => {
+    e.preventDefault();
+});
+const files = document.querySelector('file').files;
+const formData = new FormData();
+});
+formData.add(file);
+
+fetch(url, {
+    method: 'POST',
+    body: formData
+}).then(response => {
+    console.log(response);
+});
+
+
+
+
+
+
+
+// percentage wheel
 let ctx = document.getElementById('doughnutChart').getContext('2d');
 let labels = ['', 'resemblance'];
 let colorHex = ['#e6e6e6','#43AA8B'];
-
 let myChart = new Chart(ctx, {
     type: 'doughnut',
     data: {
