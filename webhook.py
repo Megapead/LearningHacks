@@ -33,14 +33,18 @@ def allowed_file(filename):
 
 @app.route('/',methods=['GET','POST'])
 def index():
+	try:
+		os.remove('static/faces/you.jpg')
+	except:
+		pass
 	if request.method == 'POST':
 		print("Here!",file=sys.stderr)
 		if 'file' not in request.files:
 			return redirect(request.url)
 		file = request.files['file']
 		rating = compareFaces(file)
-		print(rating,file=sys.stderr)
-		return redirect(url_for('result')+'?res='+rating)
+		#print(rating,file=sys.stderr)
+		return redirect(url_for('result')+'?result='+str(rating))
 	return render_template("index.html") #renders the index.html template
 	#return 'Goes somewhere'
 
@@ -50,7 +54,7 @@ def index():
 def result():
 	if request.args is not None:
 		results = request.args.get('res')
-		return render_template("results.html", results = results)
+		return render_template("result.html", results = results)
 	return "Bad routing"
 
 
@@ -85,7 +89,7 @@ def compareFaces(you):
 	them_image = face_recognition.load_image_file('static/faces/them.jpg')
 	you_encoding = face_recognition.face_encodings(pretty_image)[0]
 	them_encoding = face_recognition.face_encodings(them_image)[0]
-	return face_recognition.face_distance(you_encoding,them_encoding)
+	return  int(100 - (face_recognition.face_distance([you_encoding],them_encoding).tolist()[0]*100))
 
 
 
