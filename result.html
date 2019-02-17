@@ -1,0 +1,51 @@
+<!DOCTYPE HTML>
+
+<html>
+<head>
+	<title>Facial Comparison</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main.css" />
+	<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	<link rel="stylesheet"type="text/css" href="/path/to/jquery.easy-pie-chart.css">
+</head>
+<body class="is-preload">
+	<section id="banner">
+		<article class="container box style3">
+			<form method="post" action="#">
+				<h1 style="color:black">File Upload</h1>
+				<div class="a">
+					<div class="col-12">
+						<img src="insert url here" alt="Your Image" title="Your Image">
+						<img src="insert url2 here" alt="Their Image" title="Their Image">
+						<br><form id="uploadbanner" enctype="multipart/form-data" method="post">
+							<input id="fileupload" name="you" type="file" />
+							<input id="fileupload" name="them" type="file" /><br><br>
+							<input type="submit" value="Upload Images" name="submit">
+						</form>
+					</div>
+				</div>
+			</form>
+		</article>
+	</section>
+
+	<!-- Footer -->
+	<section id="footer">
+		<canvas id="doughnutChart" width="300" height="300"></canvas>
+		<a href="https://github.com/Megapead/LearningHacks">Project Github<a>
+			<br>
+			<br>
+	</section>
+
+		<!-- Scripts -->
+		<script src="assets/js/jquery.min.js"></script>
+		<script src="assets/js/jquery.scrolly.min.js"></script>
+		<script src="assets/js/jquery.poptrox.min.js"></script>
+		<script src="assets/js/browser.min.js"></script>
+		<script src="assets/js/breakpoints.min.js"></script>
+		<script src="assets/js/util.js"></script>
+		<script src="assets/js/main.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.min.js"></script>
+		<script src="submit.js"></script>
+	</body>
+	</html>
