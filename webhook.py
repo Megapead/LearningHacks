@@ -42,10 +42,10 @@ def index():
 
 @app.route('/howmuchikedannydevitoareyou', methods=['GET'])
 def result():
-    if request.args not None:
-        results = request.args.get('res')
-        return render_template("results.html", results = results)
-    return "Bad routing"
+	if request.args is not None:
+		results = request.args.get('res')
+		return render_template("results.html", results = results)
+	return "Bad routing"
 
 
 
@@ -58,6 +58,8 @@ def stripPostData(base64):
 def saveFile(base64,filename):
     try:
         os.makedirs('static/faces') #tries to make the listed directories
+    except:
+        pass
     path = os.path.abspath('static/faces')#Gets absoulute path of service
     file = open(path+'/'+filename+'.jpg','wb')
     img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
@@ -74,3 +76,5 @@ def compareFaces(you,them):
         return face_recognition.face_distance(you_encoding,them_encoding)
     except:
         return -1
+if __name__ == "__main__":
+    app.run(host='0.0.0.0',ssl_context='adhoc')
