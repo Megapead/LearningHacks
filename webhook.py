@@ -64,7 +64,9 @@ def saveFile(base64,filename):
         pass
     path = os.path.abspath('static/faces')#Gets absoulute path of service
     file = open(path+'/'+filename+'.jpg','wb')
-    img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
+    img = flask.request.files.get('you', '')
+    print(img,file=sys.stderr)
+    #img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
     file.write(img)
 
 def compareFaces(you,them):
