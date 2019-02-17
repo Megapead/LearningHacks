@@ -38,6 +38,7 @@ def index():
 			return redirect(request.url)
 		file = request.files['file']
 		rating = compareFaces(file)
+		print(rating,file=sys.stderr)
 		return redirect(url_for('result')+'?res='+rating)
 	return render_template("index.html") #renders the index.html template
 	#return 'Goes somewhere'
@@ -65,22 +66,20 @@ def saveFile(file):
     except:
         pass
     path = os.path.abspath('static/faces')#Gets absoulute path of service
-    file = open(path+'/you.jpg','wb')
+    #file = open(path+'/you.jpg','wb')
     print(file,file=sys.stderr)
     #img = base64.b64decode(stripPostData(base64))#Decodes string data to base64
-    file.save(os.path.join(app.config['UPLOAD_FOLDER'],'you.jpg'))
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'],'/you.jpg'))
 
 def compareFaces(you):
     saveFile(you)
     #saveFile(them)
-    try:
-        pretty_image = face_recognition.load_image_file('static/faces/you.jpg')
-        them_image = face_recognition.load_image_file('static/faces/them.jpg')
-        you_encoding = face_recognition.face_encodings(pretty_image)[0]
-        them_encoding = face_recognition.face_encodings(them_image)[0]
-        return face_recognition.face_distance(you_encoding,them_encoding)
-    except:
-        return -1
+    pretty_image = face_recognition.load_image_file('/static/faces/you.jpg')
+    them_image = face_recognition.load_image_file('/static/faces/them.jpg')
+    you_encoding = face_recognition.face_encodings(pretty_image)[0]
+    them_encoding = face_recognition.face_encodings(them_image)[0]
+    return face_recognition.face_distance(you_encoding,them_encoding)
+    
 
 
 if __name__ == "__main":
