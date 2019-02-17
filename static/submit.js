@@ -17,29 +17,13 @@ realFileBtn.addEventListener("change", function() {
   }
 });
 
-// form.addEventListener('submit', e => {
-//     e.preventDefault();
-//
-//     const files = document.querySelector('real-file').files;
-//     const formData = new FormData();
-//
-//     for (let i = 0; i < files.length; i++) {
-//         let file = files[i];
-//
-//         formData.append('files[]', file);
-//     }
-//
-//     fetch(url, {
-//         method: 'POST',
-//         body: formData
-//     }).then(response => {
-//         console.log(response);
-//     });
-// });
+<<<<<<< HEAD
 
 
 
 
+=======
+>>>>>>> 26af201fd6beb247056e5f6c16905e276b3937f2
 
 
 // percentage wheel
