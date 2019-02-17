@@ -2,7 +2,7 @@
 
 <html>
 <head>
-	<title>Devito Comparison</title>
+	<title>Devito</title>
 	<meta charset="utf-8" />
 	<link rel="shortcut icon" type="image/png" href="static/images/pic03.png">
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -25,12 +25,14 @@
 	<section id="banner">
 		<article class="container box style3">
 			<form method="post" action="#">
-				<h1 style="color:black">File Upload</h1>
 				<div class="a">
 					<div class="col-12">
 							<br><form id="uploadbanner" enctype="multipart/form-data" method="post">
-								<input id="fileupload" name="you" type="file" />
-								<br><br><input type="submit" value="Upload Image" name="submit">
+								<div class="upload-btn-wrapper">
+								  <button class="btn">Upload a file</button>
+									<input id="fileupload" name="you" type="file" />
+								</div>
+								<br><br><input type="submit" value="Submit" name="submit">
 							</form>
 						</div>
 					</div>
