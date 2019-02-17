@@ -44,7 +44,7 @@ def index():
 def result():
     if request.args not None:
         results = request.args.get('res')
-        return render_template("results.html")
+        return render_template("results.html", results = results)
     return "Bad routing"
 
 
