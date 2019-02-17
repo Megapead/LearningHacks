@@ -15,8 +15,7 @@ app = Flask(__name__, template_folder='templates') #Initializes the app with tem
 app.config['SECRET_KEY'] = "deve" #Encryption key
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0 #This is essential for allowing the images to be refreshed in the management page, it sets the expirery for the browser cache to 0
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0')
+
 
 ALLOWED_EXT = ['jpg', 'jpeg', 'png'] #List of filetypes allowed to be served to the server
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning) #Disables a very annoying warning when starting flask
@@ -38,8 +37,8 @@ def index():
 		them = request.form['them']
 		rating = compareFaces(you,them)
 		return redirect(url_for('result')+'?res='+rating)
-	#return render_template("index.html") #renders the index.html template
-	return 'Goes somewhere'
+	return render_template("index.html") #renders the index.html template
+	#return 'Goes somewhere'
 
 
 
@@ -81,3 +80,5 @@ def compareFaces(you,them):
         return -1
 
 
+if __name__ == "__main":
+	app.run(host=='0.0.0.0',ssl_context='adhoc')
