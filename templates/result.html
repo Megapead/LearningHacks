@@ -19,12 +19,16 @@
             <form method="post" action="#">
                 <div class="a">
                     <div class="col-12">
-                        <img src="{{ url_for('static', 'faces/you.jpg') }}" alt="Your Image" title="Your Image">
-                        <img src="{{ url_for('static', 'faces/them.jpg') }}" alt="Their Image" title="Their Image">
+                        <img src="{{ url_for('static', 'faces/you.jpg') }}" alt="Your Image" title="Your Image" style="width:250px;length:300px">
+                        <img src="https://static.tvgcdn.net/rovi/showcards/feed/879/thumbs/31233879_1300x1733.jpg" alt="{{ url_for('static', 'faces/them.jpg') }}Their Image" title="Their Image" style="width:250px;length:300px">
+                        <style>h2{color: black;}</style>
+                        <header>
+                          <font size="2"><h2>Your Image &nbsp; Danny Devito</h2></font><br>
+                        </header>
                     </div>
                 </div>
             </form>
-            <canvas id="doughnutChart" width="300" height="300"></canvas>
+            <center><canvas id="doughnutChart" width="400" height="400"></canvas></center>
             <br><a href="index.html" class="button style3 scrolly-middle">Back</a>
         </article>
     </section>
