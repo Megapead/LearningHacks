@@ -14,8 +14,14 @@
 //         customTxt.innerHTML = "No file chosen, yet.";
 //     }
 // });
-
-var percentage = {{result}};
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+var percentage = getUrlVars()["result"];
 var percentage2 = 100 - percentage;
 // percentage wheel
 let ctx = document.getElementById('doughnutChart').getContext('2d');
